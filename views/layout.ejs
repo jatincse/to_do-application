@@ -1,0 +1,101 @@
+<%# Whole Layout of the file for library used express-ejs-layouts %>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List!</title>
+    <%- style %>
+    <link rel="stylesheet" href="/css/layout.css">
+</head>
+
+<body>
+
+    <%# alert container used for showing an alert %>
+    <div class="alert-container">
+        <div class="overlay"></div>
+        <div class="alert-bar">
+            <h2>Are you sure you want to delete all?</h2>
+            <div id="alert-btn-container">
+                <button id="confirm" class="center-align delete-all" type="button">
+                    Confirm
+                </button>
+                <button class="center-align add" id="cancel" type="button">
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+
+    
+
+    <%# Main container containg whole layout %>
+    <main>
+        <%# Heading %>
+        <div class="app-heading-div border-bottom-px padding-10px">
+            <h1 class="heading"> TODO App</h1>
+        </div>
+
+        <%# form for submitting a task %>
+        <form action="/add-task" method="POST">
+            <div class="task-input border-bottom-px padding-10px">
+                <h4 class="subheadings"> Task Description</h4>
+                <input type="text" name="task" id="task-desc" placeholder="What do you need to do?" required>
+            </div>
+
+            <div class="task-details border-bottom-px">
+
+                <div class="basic-details">
+                    <div class="category-div padding-10px">
+                        <h4 class="subheadings">Category</h4>
+                        <select name="category" id="task-category" required>
+                            <option value="">Choose Category : </option>
+                            <option value="College">College</option>
+                            <option value="Home">Home</option>
+                            <option value="Work">Work</option>
+                            <option value="Gym">Gym</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="due-div padding-10px">
+                        <h4 class="subheadings ">Due Date</h4>
+                        <input type="date" name="date" id="due-date" required>
+                    </div>
+
+                </div>
+               
+            </div>
+
+            <%# Action div which contains buttons for either adding or deleting %>
+            <div class="actions border-bottom-px padding-10px">
+                <button class="center-align max-width-item add" type="submit"><i class="fas fa-plus"></i> ADD
+                    TASK</button>
+               
+
+            </div>
+        </form>
+
+        <%# List container. And the List is rendered in home file %>
+        <div class="task-container border-bottom-px padding-10px">
+            <div id="empty-notify">"Nothing to show here please add a task to continue!"</div>
+            <ul id="item-list">
+                <%- body %>
+            </ul>
+        </div>
+
+        
+
+
+    </main>
+
+
+    <script src="https://kit.fontawesome.com/c2e4f2d141.js" crossorigin="anonymous"></script>
+    <script src="/js/layout.js"></script>
+
+    <%- script %>
+</body>
+
+</html>
